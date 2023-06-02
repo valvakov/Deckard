@@ -10,6 +10,10 @@ public class FPSMovement : MonoBehaviour
     public Transform target;
     public ActionPoints ActionPointScript;
 
+    private Ray g_ray = new Ray();
+    public LayerMask g_layerToHit;
+    private RaycastHit g_hitObject;
+
     public int hp;
     public int mv;
     public int range;
@@ -30,13 +34,22 @@ public class FPSMovement : MonoBehaviour
 
     void Update()
     {
+        g_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(g_ray, out g_hitObject))
+        {
+            Movement();
+        }
+    }
+
+    public void Movement()
+    {
         {
             if (Input.GetMouseButtonDown(0))
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Click to move
                 ActionPointScript.actionPoints -= 1; //Deducts AP after moving
- 
+
                 if (Physics.Raycast(ray, out hit))
                 {
                     newPosition = hit.point;
