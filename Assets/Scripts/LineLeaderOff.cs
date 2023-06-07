@@ -4,29 +4,35 @@ using UnityEngine;
 
 public class LineLeaderOff : MonoBehaviour
 {
-    public MouseFollow LineScript;
-    public GameObject rangeBox;
-    private Ray g_ray = new Ray();
-    private RaycastHit g_hitObject;
-    private RaycastHit g_hitRangeBox;
-    public LayerMask g_layerToHit;
+    public object mouseFollow;
+    public Transform mouseLeader;
+    public Transform player;
+    public FPSMovement movementScript;
+    public MouseFollow mouseScript;
 
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+
+
     void Update()
     {
-        g_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(g_ray, out g_hitObject))
+        float dist = Vector3.Distance(mouseLeader.position, player.position);
+        float minDist = 10;
+
+        if(dist > minDist)
         {
-            LineScript.enabled = false;
+            movementScript.enabled = false;
+            mouseScript.enabled = false;
+            Debug.Log("out of range");
         }
-        else
+        else if(dist < minDist)
         {
-            LineScript.enabled = true;
+            movementScript.enabled = true;
+            mouseScript.enabled = true;
+            Debug.Log("in range");
         }
     }
 }
