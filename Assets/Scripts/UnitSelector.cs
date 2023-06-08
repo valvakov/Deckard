@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class UnitSelect : MonoBehaviour
+public class UnitSelector : MonoBehaviour
 {
     private Ray g_ray = new Ray();
     public LayerMask g_layerToHit;
@@ -28,7 +27,7 @@ public class UnitSelect : MonoBehaviour
     void Update()
     {
         g_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(g_ray, Mathf.Infinity, g_layerToHit))
+        if (Physics.Raycast(g_ray, out g_hitObject))
         {
             MouseClick();
         }
@@ -50,11 +49,11 @@ public class UnitSelect : MonoBehaviour
     public void Select()
     {
         if (Physics.Raycast(g_ray, out g_hitObject))
-        MovementScript.enabled = true;
-        LeaderOffScript.enabled = true;
-        LinePointScript.enabled = true;
-        MovementScript.selected = true;
-        UnitSelected();
+            MovementScript.enabled = true;
+            LeaderOffScript.enabled = true;
+            LinePointScript.enabled = true;
+            MovementScript.selected = true;
+            UnitSelected();
     }
 
     public void UnitSelected()

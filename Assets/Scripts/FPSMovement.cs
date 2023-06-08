@@ -37,7 +37,7 @@ public class FPSMovement : MonoBehaviour
     void Update()
     {
         g_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(g_ray, out g_hitObject))
+        if (Physics.Raycast(g_ray, Mathf.Infinity, g_layerToHit))
         {
             Movement();
         }

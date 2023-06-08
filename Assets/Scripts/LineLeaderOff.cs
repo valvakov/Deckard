@@ -12,7 +12,7 @@ public class LineLeaderOff : MonoBehaviour
 
     void Start()
     {
-        player = movementScript.selected = true;
+
     }
 
 
