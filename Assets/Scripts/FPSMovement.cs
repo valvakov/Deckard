@@ -20,6 +20,8 @@ public class FPSMovement : MonoBehaviour
     public int block;
     public int hit;
 
+    public bool selected;
+
     private int diceRoll;
     public Text dice;
     public Text attackSuccess;
