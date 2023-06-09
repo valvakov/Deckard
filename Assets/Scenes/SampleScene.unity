@@ -938,9 +938,10 @@ MonoBehaviour:
   g_layerToHit:
     serializedVersion: 2
     m_Bits: 128
-  LeaderOffScript: {fileID: 0}
-  LinePointScript: {fileID: 0}
-  LineRender: {fileID: 0}
+  LeaderOffScript: {fileID: 1412117637}
+  LinePointScript: {fileID: 963194230}
+  LineRender: {fileID: 394808752}
+  GameManager: {fileID: 1412117636}
   SelectedUnit: {fileID: 0}
   hitObject: {fileID: 0}
   MovementScript: {fileID: 0}

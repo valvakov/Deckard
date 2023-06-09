@@ -12,6 +12,7 @@ public class UnitSelect : MonoBehaviour
     public LineLeaderOff LeaderOffScript;
     public LinePoints LinePointScript;
     public GameObject LineRender;
+    public GameObject GameManager;
 
     public GameObject SelectedUnit;
 
@@ -21,9 +22,9 @@ public class UnitSelect : MonoBehaviour
 
     void Start()
     {
-        MovementScript.enabled = false;
-        LeaderOffScript.enabled = false;
-        LinePointScript.enabled = false;
+        SelectedUnit.GetComponent<FPSMovement>().enabled = false;
+        LineRender.SetActive(false);
+        GameManager.GetComponent<LineLeaderOff>().enabled = false;
     }
 
 
@@ -65,6 +66,8 @@ public class UnitSelect : MonoBehaviour
     public void UnitSelected()
     {
         SelectedUnit.GetComponent<FPSMovement>().enabled = true;
+        GameManager.GetComponent<LineLeaderOff>().enabled = true;
+        LineRender?.SetActive(true);
         MovementScript.enabled = true;
         LeaderOffScript.enabled = true;
         LinePointScript.enabled = true;
