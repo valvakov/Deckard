@@ -25,7 +25,7 @@ public class LineLeaderOff : MonoBehaviour
         movementScript = UnitSelectScript.SelectedUnit.GetComponent<FPSMovement>();
 
         float dist = Vector3.Distance(mouseLeader.position, player.position);
-        float minDist = 10;
+        float minDist = movementScript.mv;
 
         if(dist > minDist)
         {

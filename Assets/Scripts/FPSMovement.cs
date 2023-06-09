@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class FPSMovement : MonoBehaviour
     Vector3 newPosition;
     public Transform target;
     public ActionPoints ActionPointScript;
+    public UnitSelect SelectScript;
 
     private Ray g_ray = new Ray();
     public LayerMask g_layerToHit;
@@ -21,6 +23,7 @@ public class FPSMovement : MonoBehaviour
     public int hit;
 
     public bool selected;
+    public bool encumbered;
 
     private int diceRoll;
     public Text dice;
@@ -46,11 +49,16 @@ public class FPSMovement : MonoBehaviour
     public void Movement()
     {
         {
+        if (encumbered == true)
+            {
+                Encumberedtrue();
+            }
             if (Input.GetMouseButtonDown(0))
             {
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Click to move
                 ActionPointScript.actionPoints -= 1; //Deducts AP after moving
+                encumbered = true;
 
                 if (Physics.Raycast(ray, out hit))
                 {
@@ -60,6 +68,11 @@ public class FPSMovement : MonoBehaviour
 
             }
         }
+    }
+
+    public void Encumberedtrue()
+    {
+        mv = 0;
     }
 
     public void ClickButton(int buttonClicked)
