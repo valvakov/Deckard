@@ -11,4 +11,18 @@ public class LinePoints : MonoBehaviour
     {
         line.SetUpLine(points);
     }
+
+    public void UpdatedSelectedUnit (GameObject newSelection)
+    {
+        points[0] = newSelection.transform;
+    }
 }
+
+
+/*
+public LinePoints lP;
+lP = FindObjectOfType<LinePonts>();
+
+lP.UpdatedSelectedUnit(thingIClicked);
+
+*/

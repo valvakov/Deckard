@@ -15,6 +15,8 @@ public class UnitSelect : MonoBehaviour
 
     public GameObject SelectedUnit;
 
+    public GameObject hitObject;
+
     public FPSMovement MovementScript;
 
     void Start()
@@ -43,18 +45,25 @@ public class UnitSelect : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Select();
+            this.Select();
         }
     }
 
     public void Select()
     {
         if (Physics.Raycast(g_ray, out g_hitObject))
-        MovementScript.enabled = true;
-        LeaderOffScript.enabled = true;
-        LinePointScript.enabled = true;
-        MovementScript.selected = true;
-        UnitSelected();
+        {
+            // MAKE hitObject = g_hitObject.transform.gameObject; Then you can reference that to affect the right object.
+
+            SelectedUnit = g_hitObject.transform.gameObject;
+
+            MovementScript.enabled = true;
+            LeaderOffScript.enabled = true;
+            LinePointScript.enabled = true;
+            MovementScript.selected = true;
+            UnitSelected();
+        }
+
     }
 
     public void UnitSelected()

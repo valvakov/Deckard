@@ -14,11 +14,11 @@ public class UnitSelector : MonoBehaviour
 
     public GameObject SelectedUnit;
 
-    public FPSMovement MovementScript;
+    public UnitDetails unitDetails;
 
     void Start()
     {
-        MovementScript.enabled = false;
+        unitDetails.enabled = false;
         LeaderOffScript.enabled = false;
         LinePointScript.enabled = false;
     }
@@ -49,11 +49,14 @@ public class UnitSelector : MonoBehaviour
     public void Select()
     {
         if (Physics.Raycast(g_ray, out g_hitObject))
-            MovementScript.enabled = true;
+        {
+            unitDetails.enabled = true;
             LeaderOffScript.enabled = true;
             LinePointScript.enabled = true;
-            MovementScript.selected = true;
+            unitDetails.selected = true;
             UnitSelected();
+        }
+
     }
 
     public void UnitSelected()
