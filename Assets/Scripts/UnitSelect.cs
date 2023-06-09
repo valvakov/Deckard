@@ -57,10 +57,6 @@ public class UnitSelect : MonoBehaviour
 
             SelectedUnit = g_hitObject.transform.gameObject;
 
-            MovementScript.enabled = true;
-            LeaderOffScript.enabled = true;
-            LinePointScript.enabled = true;
-            MovementScript.selected = true;
             UnitSelected();
         }
 
@@ -68,6 +64,10 @@ public class UnitSelect : MonoBehaviour
 
     public void UnitSelected()
     {
-
+        SelectedUnit.GetComponent<FPSMovement>().enabled = true;
+        MovementScript.enabled = true;
+        LeaderOffScript.enabled = true;
+        LinePointScript.enabled = true;
+        MovementScript.selected = true;
     }
 }

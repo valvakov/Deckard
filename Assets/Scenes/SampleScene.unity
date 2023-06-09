@@ -135,8 +135,6 @@ GameObject:
   - component: {fileID: 278230133}
   - component: {fileID: 278230132}
   - component: {fileID: 278230131}
-  - component: {fileID: 278230136}
-  - component: {fileID: 278230135}
   - component: {fileID: 278230130}
   - component: {fileID: 278230137}
   m_Layer: 7
@@ -248,45 +246,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &278230135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278230129}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d86db36b0121f7448bdb68a553a2d5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseLeader: {fileID: 2077739197}
-  player: {fileID: 278230134}
-  movementScript: {fileID: 278230130}
-  mouseScript: {fileID: 1597620940}
---- !u!114 &278230136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278230129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaf86912ab91dc644b60365b933fad28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  g_layerToHit:
-    serializedVersion: 2
-    m_Bits: 128
-  LeaderOffScript: {fileID: 1412117637}
-  LinePointScript: {fileID: 963194230}
-  LineRender: {fileID: 0}
-  SelectedUnit: {fileID: 0}
-  hitObject: {fileID: 0}
-  MovementScript: {fileID: 278230130}
 --- !u!114 &278230137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093a462b6dc1bbe458f5ccd7376cfb95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lr: {fileID: 0}
+  points: []
 --- !u!1 &543825051
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +486,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -649,7 +612,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &726425025
 MonoBehaviour:
@@ -696,7 +659,7 @@ Transform:
   - {fileID: 1597620939}
   - {fileID: 2077739197}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &858813162
 GameObject:
@@ -789,6 +752,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194231}
   - component: {fileID: 963194227}
+  - component: {fileID: 963194235}
   - component: {fileID: 963194233}
   - component: {fileID: 963194232}
   - component: {fileID: 963194230}
@@ -881,9 +845,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points:
-  - {fileID: 278230134}
+  - {fileID: 0}
   - {fileID: 1597620939}
   line: {fileID: 394808755}
+  LineLeader: {fileID: 1597620939}
+  UnitSelectScript: {fileID: 963194235}
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,6 +862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093a462b6dc1bbe458f5ccd7376cfb95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lr: {fileID: 0}
+  points: []
 --- !u!114 &963194232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,8 +877,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPoints: 0
-  MovementScript: {fileID: 278230130}
+  MovementScript: {fileID: 0}
   AP: {fileID: 2002972826}
+  UnitSelect: {fileID: 963194235}
 --- !u!114 &963194233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,6 +922,28 @@ MonoBehaviour:
   player: {fileID: 278230134}
   movementScript: {fileID: 278230130}
   mouseScript: {fileID: 1597620940}
+  UnitSelectScript: {fileID: 0}
+--- !u!114 &963194235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaf86912ab91dc644b60365b933fad28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g_layerToHit:
+    serializedVersion: 2
+    m_Bits: 128
+  LeaderOffScript: {fileID: 0}
+  LinePointScript: {fileID: 0}
+  LineRender: {fileID: 0}
+  SelectedUnit: {fileID: 0}
+  hitObject: {fileID: 0}
+  MovementScript: {fileID: 0}
 --- !u!1 &1199507530
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,8 +956,6 @@ GameObject:
   - component: {fileID: 1199507536}
   - component: {fileID: 1199507535}
   - component: {fileID: 1199507534}
-  - component: {fileID: 1199507533}
-  - component: {fileID: 1199507532}
   - component: {fileID: 1199507531}
   m_Layer: 7
   m_Name: Unit 1 the 2nd
@@ -1001,43 +990,6 @@ MonoBehaviour:
   dice: {fileID: 1240900082}
   attackSuccess: {fileID: 0}
   attackButton: {fileID: 1646271315}
---- !u!114 &1199507532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199507530}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d86db36b0121f7448bdb68a553a2d5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseLeader: {fileID: 2077739197}
-  player: {fileID: 1199507537}
-  movementScript: {fileID: 1199507531}
-  mouseScript: {fileID: 1597620940}
---- !u!114 &1199507533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199507530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaf86912ab91dc644b60365b933fad28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  g_layerToHit:
-    serializedVersion: 2
-    m_Bits: 128
-  LeaderOffScript: {fileID: 1412117637}
-  LinePointScript: {fileID: 963194230}
-  LineRender: {fileID: 0}
-  SelectedUnit: {fileID: 0}
-  hitObject: {fileID: 0}
-  MovementScript: {fileID: 1199507531}
 --- !u!65 &1199507534
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1114,7 +1066,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1205503783
 GameObject:
@@ -1420,15 +1372,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412117636}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d86db36b0121f7448bdb68a553a2d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mouseLeader: {fileID: 2077739197}
-  player: {fileID: 278230134}
-  movementScript: {fileID: 278230130}
+  player: {fileID: 0}
+  movementScript: {fileID: 0}
   mouseScript: {fileID: 1597620940}
+  UnitSelectScript: {fileID: 963194235}
 --- !u!4 &1412117638
 Transform:
   m_ObjectHideFlags: 0
@@ -1442,7 +1395,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1593051187
 GameObject:
@@ -1539,7 +1492,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1597620934
 GameObject:

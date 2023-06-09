@@ -10,6 +10,8 @@ public class LineLeaderOff : MonoBehaviour
     public FPSMovement movementScript;
     public MouseFollow mouseScript;
 
+    public UnitSelect UnitSelectScript;
+
     void Start()
     {
 
@@ -19,6 +21,9 @@ public class LineLeaderOff : MonoBehaviour
 
     void Update()
     {
+        player = UnitSelectScript.SelectedUnit.GetComponent<Transform>();
+        movementScript = UnitSelectScript.SelectedUnit.GetComponent<FPSMovement>();
+
         float dist = Vector3.Distance(mouseLeader.position, player.position);
         float minDist = 10;
 

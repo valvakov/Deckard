@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class ActionPoints : MonoBehaviour
     public int actionPoints;
     public FPSMovement MovementScript;
     public Text AP;
+    public UnitSelect UnitSelect;
 
     void Start()
     {
@@ -21,8 +23,9 @@ public class ActionPoints : MonoBehaviour
 
     void Update()
     {
+        MovementScript = UnitSelect.SelectedUnit.GetComponent<FPSMovement>();
         AP.text = actionPoints.ToString();
         if (actionPoints == 0)
-            MovementScript.enabled = false;
+            UnitSelect.SelectedUnit.GetComponent<FPSMovement>().enabled = false;
     }
 }

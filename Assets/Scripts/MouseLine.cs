@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MouseLine : MonoBehaviour
 {
-    private LineRenderer lr;
-    private Transform[] points;
+    public LineRenderer lr;
+    public Transform[] points;
 
     private void Awake()
     {

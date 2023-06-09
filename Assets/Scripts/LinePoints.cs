@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class LinePoints : MonoBehaviour
 {
-    [SerializeField] private Transform[] points;
-    [SerializeField] private MouseLine line;
+    [SerializeField] public Transform[] points;
+    [SerializeField] public MouseLine line;
+    public Transform LineLeader;
+    public UnitSelect UnitSelectScript;
 
     private void Start()
     {
         line.SetUpLine(points);
+        UpdatedSelectedUnit();
     }
 
-    public void UpdatedSelectedUnit (GameObject newSelection)
+    public void UpdatedSelectedUnit ()
     {
-        points[0] = newSelection.transform;
+        points[0] = UnitSelectScript.SelectedUnit.transform;
+        points[1] = LineLeader.transform;
+
     }
 }
 
