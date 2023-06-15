@@ -602,6 +602,7 @@ GameObject:
   - component: {fileID: 963194231}
   - component: {fileID: 963194227}
   - component: {fileID: 963194235}
+  - component: {fileID: 963194236}
   - component: {fileID: 963194233}
   - component: {fileID: 963194232}
   - component: {fileID: 963194230}
@@ -781,6 +782,26 @@ MonoBehaviour:
   UnitDetails: {fileID: 0}
   hitObject: {fileID: 0}
   MovementScript: {fileID: 963194233}
+--- !u!114 &963194236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a859e1365a775649b5f394804a14bfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diceRoll: 0
+  dice: {fileID: 1240900082}
+  attackSuccess: {fileID: 965425980}
+  Targethp: 0
+  attackButton: {fileID: 1646271315}
+  SelectionUnit: {fileID: 0}
+  UnitDetails: {fileID: 1105890352}
+  UnitSelect: {fileID: 963194235}
 --- !u!1 &965425979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,8 +1572,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 963194233}
-        m_TargetAssemblyTypeName: FPSMovement, Assembly-CSharp
+      - m_Target: {fileID: 963194236}
+        m_TargetAssemblyTypeName: UnitAttack, Assembly-CSharp
         m_MethodName: ClickButton
         m_Mode: 3
         m_Arguments:

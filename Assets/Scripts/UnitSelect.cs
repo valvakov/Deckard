@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitSelect : MonoBehaviour
 {
@@ -58,14 +59,19 @@ public class UnitSelect : MonoBehaviour
         {
             AttackCheck();
         }
+
+        if (UnitDetails.attacking == false)
+        {
+            TargetUnit = null;
+        }
     }
 
     public void MouseClick()
     {
-            if (Input.GetMouseButtonDown(0))
-            {
-                check();
-            }
+        if (Input.GetMouseButtonDown(0))
+        {
+            check();
+        }
     }
 
     public void check()
@@ -75,27 +81,27 @@ public class UnitSelect : MonoBehaviour
             Select();
         }
     }
-        
+
     public void Select()
     {
         if (Physics.Raycast(g_ray, out g_hitObject))
         {
             // MAKE hitObject = g_hitObject.transform.gameObject; Then you can reference that to affect the right object.
-                SelectedUnit = g_hitObject.transform.gameObject;
-                UnitSelected();
+            SelectedUnit = g_hitObject.transform.gameObject;
+            UnitSelected();
         }
 
     }
 
     public void UnitSelected()
     {
-            LineRender?.SetActive(true);
-            MovementScript.attackButton.gameObject.SetActive(false);
-            UnitDetails.attacking = false;
-            GameManager.GetComponent<AttackingRange>().enabled = false;
-            SelectedUnit.GetComponent<MeshRenderer>().material = Material1;
-            SelectedUnit.GetComponent<FPSMovement>().enabled = true;
-            GameManager.GetComponent<LineLeaderOff>().enabled = true;
+        LineRender?.SetActive(true);
+        MovementScript.attackButton.gameObject.SetActive(false);
+        UnitDetails.attacking = false;
+        GameManager.GetComponent<AttackingRange>().enabled = false;
+        SelectedUnit.GetComponent<MeshRenderer>().material = Material1;
+        SelectedUnit.GetComponent<FPSMovement>().enabled = true;
+        GameManager.GetComponent<LineLeaderOff>().enabled = true;
     }
 
     public void AttackMode()
@@ -105,7 +111,7 @@ public class UnitSelect : MonoBehaviour
         if (Physics.Raycast(g_ray, Mathf.Infinity, g_layerToHit))
         {
             AttackCheck();
-        }      
+        }
         Debug.Log("Attacking");
     }
 
@@ -113,10 +119,10 @@ public class UnitSelect : MonoBehaviour
     {
         if (UnitDetails.attacking == true)
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            AttackSuccess();
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                AttackSuccess();
+            }
     }
 
     public void AttackSuccess()
@@ -127,3 +133,4 @@ public class UnitSelect : MonoBehaviour
         }
     }
 }
+
