@@ -26,6 +26,8 @@ public class ActionPoints : MonoBehaviour
         MovementScript = UnitSelect.SelectedUnit.GetComponent<FPSMovement>();
         AP.text = actionPoints.ToString();
         if (actionPoints == 0)
-            UnitSelect.SelectedUnit.GetComponent<FPSMovement>().enabled = false;
+        {
+          UnitSelect.SelectedUnit.GetComponent<FPSMovement>().enabled = false;
+        }
     }
 }

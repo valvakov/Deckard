@@ -7,6 +7,7 @@ public class UnitSelect : MonoBehaviour
 {
     private Ray g_ray = new Ray();
     public LayerMask g_layerToHit;
+    public LayerMask g_enemyLayer;
     public RaycastHit g_hitObject;
 
     public LineLeaderOff LeaderOffScript;
@@ -19,16 +20,23 @@ public class UnitSelect : MonoBehaviour
     public GameObject SelectedUnit;
     public GameObject TargetUnit;
 
+    public UnitDetails UnitDetails;
+
     public GameObject hitObject;
 
     public FPSMovement MovementScript;
 
     void Start()
     {
+        MovementScript.attackButton.gameObject.SetActive(false);
+        UnitDetails = SelectedUnit.GetComponent<UnitDetails>();
+        UnitDetails.attacking = false;
         SelectedUnit.GetComponent<MeshRenderer>().material = Material2;
         SelectedUnit.GetComponent<FPSMovement>().enabled = false;
         LineRender.SetActive(false);
         GameManager.GetComponent<LineLeaderOff>().enabled = false;
+        SelectedUnit = null;
+        TargetUnit = null;
     }
 
 
@@ -45,43 +53,77 @@ public class UnitSelect : MonoBehaviour
             Start();
         }
 
-        if (Input.GetKeyDown("space"))
+        g_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(g_ray, Mathf.Infinity, g_enemyLayer))
         {
-            AttackMode();
+            AttackCheck();
         }
     }
 
     public void MouseClick()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            this.Select();
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                check();
+            }
     }
 
+    public void check()
+    {
+        if (SelectedUnit == null)
+        {
+            Select();
+        }
+    }
+        
     public void Select()
     {
         if (Physics.Raycast(g_ray, out g_hitObject))
         {
             // MAKE hitObject = g_hitObject.transform.gameObject; Then you can reference that to affect the right object.
-
-            SelectedUnit = g_hitObject.transform.gameObject;
-
-            UnitSelected();
+                SelectedUnit = g_hitObject.transform.gameObject;
+                UnitSelected();
         }
 
     }
 
     public void UnitSelected()
     {
-        SelectedUnit.GetComponent<MeshRenderer>().material = Material1;
-        SelectedUnit.GetComponent<FPSMovement>().enabled = true;
-        GameManager.GetComponent<LineLeaderOff>().enabled = true;
-        LineRender?.SetActive(true);
+            LineRender?.SetActive(true);
+            MovementScript.attackButton.gameObject.SetActive(false);
+            UnitDetails.attacking = false;
+            GameManager.GetComponent<AttackingRange>().enabled = false;
+            SelectedUnit.GetComponent<MeshRenderer>().material = Material1;
+            SelectedUnit.GetComponent<FPSMovement>().enabled = true;
+            GameManager.GetComponent<LineLeaderOff>().enabled = true;
     }
 
     public void AttackMode()
     {
+
+        g_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(g_ray, Mathf.Infinity, g_layerToHit))
+        {
+            AttackCheck();
+        }      
         Debug.Log("Attacking");
+    }
+
+    public void AttackCheck()
+    {
+        if (UnitDetails.attacking == true)
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            AttackSuccess();
+        }
+    }
+
+    public void AttackSuccess()
+    {
+        if (Physics.Raycast(g_ray, out g_hitObject))
+        {
+            TargetUnit = g_hitObject.transform.gameObject;
+        }
     }
 }

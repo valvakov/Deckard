@@ -16,11 +16,7 @@ public class FPSMovement : MonoBehaviour
     public LayerMask g_layerToHit;
     private RaycastHit g_hitObject;
 
-    public int hp;
-    public int mv;
-    public int range;
-    public int block;
-    public int hit;
+    public UnitDetails UnitDetails;
 
     public bool selected;
     public bool encumbered;
@@ -44,12 +40,22 @@ public class FPSMovement : MonoBehaviour
         {
             Movement();
         }
+
+        if (UnitDetails.attacking == true)
+        {
+            attackButton.gameObject.SetActive(true);
+        }
+
+        if (UnitDetails.attacking == false)
+        {
+            attackButton.gameObject.SetActive(false);
+        }
     }
 
     public void Movement()
     {
         {
-        if (encumbered == true)
+        if (UnitDetails.encumbered == true)
             {
                 Encumberedtrue();
             }
@@ -58,7 +64,7 @@ public class FPSMovement : MonoBehaviour
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Click to move
                 ActionPointScript.actionPoints -= 1; //Deducts AP after moving
-                encumbered = true;
+                UnitDetails.encumbered = true;
 
                 if (Physics.Raycast(ray, out hit))
                 {
@@ -72,43 +78,6 @@ public class FPSMovement : MonoBehaviour
 
     public void Encumberedtrue()
     {
-        mv = 0;
+        UnitDetails.mv = 0;
     }
-
-    public void ClickButton(int buttonClicked)
-    {
-
-        if (buttonClicked == 1)
-        {
-            Attack();
-        }
-    }
-
-    private void Attack()
-    {
-        Attack(attackSuccess);
-    }
-
-    void Attack(Text attackSuccess)
-    {
-        Debug.Log("Button pressed");
-        diceRoll = Random.Range(1, 7);
-        dice.text = diceRoll.ToString();
-
-        if (diceRoll > hit)
-        {
-            attackSuccess.text = "Attack hit";
-        }
-
-        if (diceRoll == hit)
-        {
-            attackSuccess.text = "Attack hit";
-        }
-
-        if (diceRoll < hit)
-        {
-            attackSuccess.text = "Attack miss";
-        }
-    }
-
 }

@@ -21,12 +21,3 @@ public class LinePoints : MonoBehaviour
 
     }
 }
-
-
-/*
-public LinePoints lP;
-lP = FindObjectOfType<LinePonts>();
-
-lP.UpdatedSelectedUnit(thingIClicked);
-
-*/

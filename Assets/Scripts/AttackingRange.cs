@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineLeaderOff : MonoBehaviour
+public class AttackingRange : MonoBehaviour
 {
     public object mouseFollow;
     public Transform mouseLeader;
@@ -25,17 +25,15 @@ public class LineLeaderOff : MonoBehaviour
         movementScript = UnitSelectScript.SelectedUnit.GetComponent<FPSMovement>();
 
         float dist = Vector3.Distance(mouseLeader.position, player.position);
-        float minDist = UnitDetails.mv;
+        float minDist = UnitDetails.range;
 
-        if(dist > minDist)
+        if (dist > minDist)
         {
-            movementScript.enabled = false;
             mouseScript.enabled = false;
             Debug.Log("out of range");
         }
-        else if(dist < minDist)
+        else if (dist < minDist)
         {
-            movementScript.enabled = true;
             mouseScript.enabled = true;
             Debug.Log("in range");
         }
