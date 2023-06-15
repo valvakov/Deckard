@@ -17,6 +17,7 @@ public class UnitSelect : MonoBehaviour
     public Material Material2;
 
     public GameObject SelectedUnit;
+    public GameObject TargetUnit;
 
     public GameObject hitObject;
 
@@ -42,6 +43,11 @@ public class UnitSelect : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Start();
+        }
+
+        if (Input.GetKeyDown("space"))
+        {
+            AttackMode();
         }
     }
 
@@ -72,5 +78,10 @@ public class UnitSelect : MonoBehaviour
         SelectedUnit.GetComponent<FPSMovement>().enabled = true;
         GameManager.GetComponent<LineLeaderOff>().enabled = true;
         LineRender?.SetActive(true);
+    }
+
+    public void AttackMode()
+    {
+        Debug.Log("Attacking");
     }
 }

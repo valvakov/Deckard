@@ -95,19 +95,19 @@ public class FPSMovement : MonoBehaviour
         diceRoll = Random.Range(1, 7);
         dice.text = diceRoll.ToString();
 
-        //if (diceRoll < hit)
+        if (diceRoll > hit)
         {
-            attackSuccess.text += "Attack hit";
+            attackSuccess.text = "Attack hit";
         }
 
-       // if (diceRoll = hit)
+        if (diceRoll == hit)
         {
-            attackSuccess.text += "Attack hit";
+            attackSuccess.text = "Attack hit";
         }
 
-       // if (diceRoll > hit)
+        if (diceRoll < hit)
         {
-            attackSuccess.text += "Attack miss";
+            attackSuccess.text = "Attack miss";
         }
     }
 

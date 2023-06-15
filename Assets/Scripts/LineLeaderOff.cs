@@ -10,15 +10,14 @@ public class LineLeaderOff : MonoBehaviour
     public FPSMovement movementScript;
     public MouseFollow mouseScript;
 
+    public int CurrentStat;
+
     public UnitSelect UnitSelectScript;
 
     void Start()
     {
 
     }
-
-
-
     void Update()
     {
         player = UnitSelectScript.SelectedUnit.GetComponent<Transform>();
