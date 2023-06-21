@@ -9,7 +9,7 @@ public class UnitAttack : MonoBehaviour
     public Text dice;
     public Text attackSuccess;
 
-    public int Targethp;
+    public UnitDetails Targethp;
 
     public Button attackButton;
 
@@ -19,6 +19,9 @@ public class UnitAttack : MonoBehaviour
 
     public UnitSelect UnitSelect;
 
+    public GameObject TargetUnit;
+    public UnitDetails TargetUnitDetails;
+
     void Start()
     {
         
@@ -27,7 +30,11 @@ public class UnitAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SelectionUnit = UnitSelect.SelectedUnit;
+        UnitDetails = SelectionUnit.GetComponent<UnitDetails>();
 
+        TargetUnit = UnitSelect.TargetUnit;
+        TargetUnitDetails = TargetUnit.GetComponent<UnitDetails>();
     }
 
     public void ClickButton(int buttonClicked)
@@ -52,12 +59,12 @@ public class UnitAttack : MonoBehaviour
         if (diceRoll < UnitDetails.hit)
         {
             attackSuccess.text = "Attack hit";
-            UnitDetails.hp =- 1;
+            TargetUnitDetails.hp -=1;
         }
         if (diceRoll == UnitDetails.hit)
         {
             attackSuccess.text = "Attack hit";
-            UnitDetails.hp = -1;
+            TargetUnitDetails.hp -=1;
         }
         if (diceRoll > UnitDetails.hit)
         {

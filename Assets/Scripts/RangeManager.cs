@@ -16,6 +16,8 @@ public class RangeManager : MonoBehaviour
 
     public GameObject LineRender;
 
+    public SwitchCamera SwitchCamera;
+
     void Start()
     {
         
@@ -24,6 +26,8 @@ public class RangeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Camera = SwitchCamera.SelectedCamera;
+
         UnitDetails = UnitSelect.SelectedUnit.GetComponent<UnitDetails>();
 
         if (UnitSelect.SelectedUnit != null)

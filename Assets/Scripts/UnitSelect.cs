@@ -15,8 +15,6 @@ public class UnitSelect : MonoBehaviour
     public LinePoints LinePointScript;
     public GameObject LineRender;
     public GameObject GameManager;
-    public Material Material1;
-    public Material Material2;
 
     public GameObject SelectedUnit;
     public GameObject TargetUnit;
@@ -27,12 +25,13 @@ public class UnitSelect : MonoBehaviour
 
     public FPSMovement MovementScript;
 
+    public LinePoints LinePoints;
+
     void Start()
     {
         MovementScript.attackButton.gameObject.SetActive(false);
         UnitDetails = SelectedUnit.GetComponent<UnitDetails>();
         UnitDetails.attacking = false;
-        SelectedUnit.GetComponent<MeshRenderer>().material = Material2;
         SelectedUnit.GetComponent<FPSMovement>().enabled = false;
         LineRender.SetActive(false);
         GameManager.GetComponent<LineLeaderOff>().enabled = false;
@@ -99,7 +98,6 @@ public class UnitSelect : MonoBehaviour
         MovementScript.attackButton.gameObject.SetActive(false);
         UnitDetails.attacking = false;
         GameManager.GetComponent<AttackingRange>().enabled = false;
-        SelectedUnit.GetComponent<MeshRenderer>().material = Material1;
         SelectedUnit.GetComponent<FPSMovement>().enabled = true;
         GameManager.GetComponent<LineLeaderOff>().enabled = true;
     }

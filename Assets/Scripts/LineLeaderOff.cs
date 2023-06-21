@@ -10,16 +10,23 @@ public class LineLeaderOff : MonoBehaviour
     public FPSMovement movementScript;
     public MouseFollow mouseScript;
 
+    public GameObject SelectedCamera;
+
     public UnitDetails UnitDetails;
 
     public UnitSelect UnitSelectScript;
 
+    public SwitchCamera SwitchCamera;
     void Start()
     {
 
     }
     void Update()
     {
+        SelectedCamera = SwitchCamera.SelectedCamera;
+
+        UnitSelectScript = SelectedCamera.GetComponent<UnitSelect>();
+
         UnitDetails = UnitSelectScript.SelectedUnit.GetComponent<UnitDetails>();
         player = UnitSelectScript.SelectedUnit.GetComponent<Transform>();
         movementScript = UnitSelectScript.SelectedUnit.GetComponent<FPSMovement>();
