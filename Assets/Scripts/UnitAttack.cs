@@ -30,11 +30,14 @@ public class UnitAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SelectionUnit = UnitSelect.SelectedUnit;
-        UnitDetails = SelectionUnit.GetComponent<UnitDetails>();
+        if (UnitSelect.SelectedUnit != null)
+        {
+            SelectionUnit = UnitSelect.SelectedUnit;
+            UnitDetails = SelectionUnit.GetComponent<UnitDetails>();
 
-        TargetUnit = UnitSelect.TargetUnit;
-        TargetUnitDetails = TargetUnit.GetComponent<UnitDetails>();
+            TargetUnit = UnitSelect.TargetUnit;
+            TargetUnitDetails = TargetUnit.GetComponent<UnitDetails>();
+        }
     }
 
     public void ClickButton(int buttonClicked)
@@ -56,19 +59,22 @@ public class UnitAttack : MonoBehaviour
         diceRoll = Random.Range(1, 7);
         dice.text = diceRoll.ToString();
 
-        if (diceRoll < UnitDetails.hit)
+        if (diceRoll > UnitDetails.hit)
         {
             attackSuccess.text = "Attack hit";
             TargetUnitDetails.hp -=1;
+            UnitDetails.fatigued = true;
         }
         if (diceRoll == UnitDetails.hit)
         {
             attackSuccess.text = "Attack hit";
             TargetUnitDetails.hp -=1;
+            UnitDetails.fatigued = true;
         }
-        if (diceRoll > UnitDetails.hit)
+        if (diceRoll < UnitDetails.hit)
         {
             attackSuccess.text = "Attack Miss";
+            UnitDetails.fatigued = true;
         }
     }
 }

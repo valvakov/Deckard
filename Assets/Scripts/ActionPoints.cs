@@ -23,7 +23,11 @@ public class ActionPoints : MonoBehaviour
 
     void Update()
     {
-        MovementScript = UnitSelect.SelectedUnit.GetComponent<FPSMovement>();
+        if (UnitSelect.SelectedUnit != null)
+        {
+            MovementScript = UnitSelect.SelectedUnit.GetComponent<FPSMovement>();
+        }
+
         AP.text = actionPoints.ToString();
         if (actionPoints == 0)
         {

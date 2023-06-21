@@ -30,9 +30,15 @@ public class UnitSelect : MonoBehaviour
     void Start()
     {
         MovementScript.attackButton.gameObject.SetActive(false);
-        UnitDetails = SelectedUnit.GetComponent<UnitDetails>();
-        UnitDetails.attacking = false;
-        SelectedUnit.GetComponent<FPSMovement>().enabled = false;
+        if (SelectedUnit != null)
+        {
+            UnitDetails = SelectedUnit.GetComponent<UnitDetails>();
+            UnitDetails.attacking = false;
+            SelectedUnit.GetComponent<FPSMovement>().enabled = false;
+            // in here!
+        }
+
+
         LineRender.SetActive(false);
         GameManager.GetComponent<LineLeaderOff>().enabled = false;
         SelectedUnit = null;
@@ -59,9 +65,12 @@ public class UnitSelect : MonoBehaviour
             AttackCheck();
         }
 
-        if (UnitDetails.attacking == false)
+        if (SelectedUnit != null)
         {
-            TargetUnit = null;
+            if (UnitDetails.attacking == false)
+            {
+                TargetUnit = null;
+            }
         }
     }
 

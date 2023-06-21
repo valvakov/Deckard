@@ -26,7 +26,10 @@ public class LinePoints : MonoBehaviour
         SelectedCamera = SwitchCamera.SelectedCamera;
         UnitSelectScript = SelectedCamera.GetComponent<UnitSelect>();
 
-        points[0] = UnitSelectScript.SelectedUnit.GetComponent<Transform>();
+        if (UnitSelectScript.SelectedUnit != null)
+        {
+            points[0] = UnitSelectScript.SelectedUnit.GetComponent<Transform>();
+        }
         points[1] = LineLeader.transform;
 
     }

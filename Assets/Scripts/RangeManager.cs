@@ -18,6 +18,9 @@ public class RangeManager : MonoBehaviour
 
     public SwitchCamera SwitchCamera;
 
+    public GameObject SelectedUnit;
+
+
     void Start()
     {
         
@@ -27,29 +30,43 @@ public class RangeManager : MonoBehaviour
     void Update()
     {
         Camera = SwitchCamera.SelectedCamera;
-
-        UnitDetails = UnitSelect.SelectedUnit.GetComponent<UnitDetails>();
+        SelectedUnit = UnitSelect.SelectedUnit;
+        UnitSelect = Camera.GetComponent<UnitSelect>();
+        FPSMovement = Camera.GetComponent<FPSMovement>();
 
         if (UnitSelect.SelectedUnit != null)
         {
-            if (Input.GetKeyDown("space"))
+            SelectedUnit.GetComponent<UnitDetails>();
+
+            UnitDetails = UnitSelect.SelectedUnit.GetComponent<UnitDetails>();
+            if (UnitDetails.fatigued == false)
             {
-                UnitDetails.attacking = true;
-                UnitSelect.SelectedUnit.GetComponent<FPSMovement>().enabled = false;
-                GameManager.GetComponent<AttackingRange>().enabled = true;
-                GameManager.GetComponent<LineLeaderOff>().enabled = false;
+
+                if (UnitSelect.SelectedUnit != null)
+                {
+                    if (Input.GetKeyDown("space"))
+                    {
+                        UnitDetails.attacking = true;
+                        UnitSelect.SelectedUnit.GetComponent<FPSMovement>().enabled = false;
+                        GameManager.GetComponent<AttackingRange>().enabled = true;
+                        GameManager.GetComponent<LineLeaderOff>().enabled = false;
+                    }
+
+                }
+            }
+
+
+            if (UnitDetails.attacking == true)
+            {
+                FPSMovement.attackButton.gameObject.SetActive(true);
+            }
+
+            if (UnitDetails.attacking == false)
+            {
+                FPSMovement.attackButton.gameObject.SetActive(false);
             }
 
         }
-
-        if (UnitDetails.attacking == true)
-        {
-            FPSMovement.attackButton.gameObject.SetActive(true);
-        }
-
-        if (UnitDetails.attacking == false)
-        {
-            FPSMovement.attackButton.gameObject.SetActive(false);
-        }
-    }
+     }
 }
+

@@ -15,11 +15,13 @@ public class UnitDetails : MonoBehaviour
 
     public bool selected;
     public bool encumbered;
+    public bool fatigued;
     public bool attacking;
 
     private int diceRoll;
     public Text dice;
     public Text attackSuccess;
+    //public GameObject Thisunit;
 
     public Button attackButton;
 
@@ -31,6 +33,9 @@ public class UnitDetails : MonoBehaviour
 
     void Update()
     {
-
+        if (hp == 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

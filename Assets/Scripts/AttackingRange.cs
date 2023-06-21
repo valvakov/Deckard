@@ -12,6 +12,10 @@ public class AttackingRange : MonoBehaviour
 
     public UnitDetails UnitDetails;
 
+    public SwitchCamera CameraSelect;
+
+    public GameObject SelectedCamera;
+
     public UnitSelect UnitSelectScript;
 
     void Start()
@@ -20,9 +24,14 @@ public class AttackingRange : MonoBehaviour
     }
     void Update()
     {
-        UnitDetails = UnitSelectScript.SelectedUnit.GetComponent<UnitDetails>();
-        player = UnitSelectScript.SelectedUnit.GetComponent<Transform>();
-        movementScript = UnitSelectScript.SelectedUnit.GetComponent<FPSMovement>();
+        SelectedCamera = CameraSelect.SelectedCamera;
+        if (UnitSelectScript != null)
+        {
+            UnitSelectScript = SelectedCamera.GetComponent<UnitSelect>();
+            UnitDetails = UnitSelectScript.SelectedUnit.GetComponent<UnitDetails>();
+            player = UnitSelectScript.SelectedUnit.GetComponent<Transform>();
+            movementScript = UnitSelectScript.SelectedUnit.GetComponent<FPSMovement>();
+        }
 
         float dist = Vector3.Distance(mouseLeader.position, player.position);
         float minDist = UnitDetails.range;

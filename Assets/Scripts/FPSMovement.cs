@@ -41,35 +41,43 @@ public class FPSMovement : MonoBehaviour
             Movement();
         }
 
-        if (UnitDetails.attacking == true)
+        if (UnitDetails != null)
         {
-            attackButton.gameObject.SetActive(true);
-        }
+            if (UnitDetails.attacking == true)
+            {
+                attackButton.gameObject.SetActive(true);
+            }
 
-        if (UnitDetails.attacking == false)
-        {
-            attackButton.gameObject.SetActive(false);
+            if (UnitDetails.attacking == false)
+            {
+                attackButton.gameObject.SetActive(false);
+            }
         }
     }
 
     public void Movement()
     {
         {
-        if (UnitDetails.encumbered == true)
+            if (UnitDetails != null)
             {
-                Encumberedtrue();
-            }
-            if (Input.GetMouseButtonDown(0))
-            {
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Click to move
-                ActionPointScript.actionPoints -= 1; //Deducts AP after moving
-                UnitDetails.encumbered = true;
 
-                if (Physics.Raycast(ray, out hit))
+                if (UnitDetails.encumbered == true)
                 {
-                    newPosition = hit.point;
-                    transform.position = newPosition;
+                    Encumberedtrue();
+                }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Click to move
+                    ActionPointScript.actionPoints -= 1; //Deducts AP after moving
+                    UnitDetails.encumbered = true;
+
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        newPosition = hit.point;
+                        transform.position = newPosition;
+                    }
+
                 }
 
             }
