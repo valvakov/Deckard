@@ -34,28 +34,21 @@ public class UnitAttack : MonoBehaviour
         {
             SelectionUnit = UnitSelect.SelectedUnit;
             UnitDetails = SelectionUnit.GetComponent<UnitDetails>();
-
-            TargetUnit = UnitSelect.TargetUnit;
-            TargetUnitDetails = TargetUnit.GetComponent<UnitDetails>();
-        }
-
-        if (UnitDetails.fatigued == true)
-        {
-            attackButton.enabled = false;
+            if (TargetUnit != null)
+            {
+                TargetUnit = UnitSelect.TargetUnit;
+                TargetUnitDetails = TargetUnit.GetComponent<UnitDetails>();
+            }
         }
     }
 
     public void ClickButton(int buttonClicked)
     {
-        if (UnitDetails.fatigued == false)
+        if (buttonClicked == 1)
         {
-            if (buttonClicked == 1)
-            {
-                AttackBegin();
-            }
+            AttackBegin();
         }
     }
-
 
     public void AttackBegin()
     {

@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActionPointScript: {fileID: 0}
-  hp: 8
+  hp: 0
   mv: 14
   range: 6
   block: 0
@@ -348,7 +348,6 @@ MonoBehaviour:
   attacking: 0
   dice: {fileID: 0}
   attackSuccess: {fileID: 0}
-  SelectedText: {fileID: 0}
   attackButton: {fileID: 0}
 --- !u!1 &6424481412742725273
 GameObject:

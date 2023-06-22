@@ -39,11 +39,5 @@ public class UnitDetails : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-
-        if (Input.GetKeyDown("escape"))
-        {
-            fatigued = false;
-            encumbered = false;
-        }
     }
 }

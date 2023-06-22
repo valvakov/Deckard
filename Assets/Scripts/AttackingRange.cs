@@ -38,11 +38,13 @@ public class AttackingRange : MonoBehaviour
 
         if (dist > minDist)
         {
+            UnitDetails.attacking = false;
             mouseScript.enabled = false;
             Debug.Log("out of range");
         }
         else if (dist < minDist)
         {
+            UnitDetails.attacking = true;
             mouseScript.enabled = true;
             Debug.Log("in range");
         }
