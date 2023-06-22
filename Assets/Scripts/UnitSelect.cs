@@ -27,12 +27,13 @@ public class UnitSelect : MonoBehaviour
 
     public LinePoints LinePoints;
 
+    public Text SelectedText;
+
     void Start()
     {
         MovementScript.attackButton.gameObject.SetActive(false);
         if (SelectedUnit != null)
         {
-            UnitDetails = SelectedUnit.GetComponent<UnitDetails>();
             UnitDetails.attacking = false;
             SelectedUnit.GetComponent<FPSMovement>().enabled = false;
             // in here!
@@ -67,9 +68,13 @@ public class UnitSelect : MonoBehaviour
 
         if (SelectedUnit != null)
         {
+            UnitDetails = SelectedUnit.GetComponent<UnitDetails>();
             if (UnitDetails.attacking == false)
             {
-                TargetUnit = null;
+                if (TargetUnit != null)
+                {
+                    TargetUnit = null;
+                }
             }
         }
     }
@@ -105,7 +110,6 @@ public class UnitSelect : MonoBehaviour
     {
         LineRender?.SetActive(true);
         MovementScript.attackButton.gameObject.SetActive(false);
-        UnitDetails.attacking = false;
         GameManager.GetComponent<AttackingRange>().enabled = false;
         SelectedUnit.GetComponent<FPSMovement>().enabled = true;
         GameManager.GetComponent<LineLeaderOff>().enabled = true;

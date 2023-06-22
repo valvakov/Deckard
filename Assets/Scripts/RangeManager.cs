@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RangeManager : MonoBehaviour
 {
@@ -19,7 +20,6 @@ public class RangeManager : MonoBehaviour
     public SwitchCamera SwitchCamera;
 
     public GameObject SelectedUnit;
-
 
     void Start()
     {

@@ -21,6 +21,8 @@ public class UnitDetails : MonoBehaviour
     private int diceRoll;
     public Text dice;
     public Text attackSuccess;
+
+    public Text SelectedText;
     //public GameObject Thisunit;
 
     public Button attackButton;
