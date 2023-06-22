@@ -34,11 +34,8 @@ public class UnitAttack : MonoBehaviour
         {
             SelectionUnit = UnitSelect.SelectedUnit;
             UnitDetails = SelectionUnit.GetComponent<UnitDetails>();
-            if (TargetUnit != null)
-            {
-                TargetUnit = UnitSelect.TargetUnit;
-                TargetUnitDetails = TargetUnit.GetComponent<UnitDetails>();
-            }
+            TargetUnit = UnitSelect.TargetUnit;
+            TargetUnitDetails = TargetUnit.GetComponent<UnitDetails>();
         }
     }
 

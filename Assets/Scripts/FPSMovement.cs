@@ -40,19 +40,6 @@ public class FPSMovement : MonoBehaviour
         {
             Movement();
         }
-
-        if (UnitDetails != null)
-        {
-            if (UnitDetails.attacking == true)
-            {
-                attackButton.gameObject.SetActive(true);
-            }
-
-            if (UnitDetails.attacking == false)
-            {
-                attackButton.gameObject.SetActive(false);
-            }
-        }
     }
 
     public void Movement()
