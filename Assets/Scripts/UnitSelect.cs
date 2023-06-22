@@ -35,7 +35,6 @@ public class UnitSelect : MonoBehaviour
         if (SelectedUnit != null)
         {
             UnitDetails.attacking = false;
-            SelectedUnit.GetComponent<FPSMovement>().enabled = false;
             // in here!
         }
 
@@ -89,10 +88,7 @@ public class UnitSelect : MonoBehaviour
 
     public void check()
     {
-        if (SelectedUnit == null)
-        {
-            Select();
-        }
+         Select();
     }
 
     public void Select()

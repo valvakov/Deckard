@@ -11,6 +11,11 @@ public class ActionPoints : MonoBehaviour
     public Text AP;
     public UnitSelect UnitSelect;
 
+    public SwitchCamera SwitchCamera;
+
+    public GameObject Camera1;
+    public GameObject Camera2;
+
     void Start()
     {
         TurnStart();
@@ -32,6 +37,15 @@ public class ActionPoints : MonoBehaviour
         if (actionPoints == 0)
         {
           UnitSelect.SelectedUnit.GetComponent<FPSMovement>().enabled = false;
+        }
+
+        if (Input.GetKeyDown("escape"))
+        {
+            TurnStart();
+        }
+        if (Input.GetKeyDown("`"))
+        {
+            TurnStart();
         }
     }
 }

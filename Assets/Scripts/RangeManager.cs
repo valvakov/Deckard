@@ -21,6 +21,8 @@ public class RangeManager : MonoBehaviour
 
     public GameObject SelectedUnit;
 
+    public 
+
     void Start()
     {
         
@@ -56,12 +58,12 @@ public class RangeManager : MonoBehaviour
             }
 
 
-            if (UnitDetails.attacking == true)
+            if (UnitSelect.TargetUnit != null)
             {
                 FPSMovement.attackButton.gameObject.SetActive(true);
             }
 
-            if (UnitDetails.attacking == false)
+            if (UnitSelect.TargetUnit == null)
             {
                 FPSMovement.attackButton.gameObject.SetActive(false);
             }

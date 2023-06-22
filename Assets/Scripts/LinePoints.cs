@@ -30,7 +30,11 @@ public class LinePoints : MonoBehaviour
         {
             points[0] = UnitSelectScript.SelectedUnit.GetComponent<Transform>();
         }
-        points[1] = LineLeader.transform;
+        if (UnitSelectScript.SelectedUnit = null)
+        {
+            points[0] = null;
+        }
+            points[1] = LineLeader.transform;
 
     }
 }

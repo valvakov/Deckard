@@ -6,7 +6,11 @@ public class SwitchCamera : MonoBehaviour
 {
     public GameObject Camera1;
     public GameObject Camera2;
+    public GameObject Camera2Move;
+    public GameObject CameraMove;
     public GameObject SelectedCamera;
+
+    public ActionPoints ActionPoints;
 
     void Start()
     {
@@ -20,6 +24,8 @@ public class SwitchCamera : MonoBehaviour
         {
             Camera1.SetActive(false);
             Camera2.SetActive(true);
+            Camera2Move.SetActive(true);
+            CameraMove.SetActive(false);
             SelectedCamera = Camera2;
         }
 
@@ -27,6 +33,8 @@ public class SwitchCamera : MonoBehaviour
         {
             Camera1.SetActive(true);
             Camera2.SetActive(false);
+            Camera2Move.SetActive(false);
+            CameraMove.SetActive(true);
             SelectedCamera = Camera1;
         }
     }
