@@ -26,30 +26,30 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-
+        MoveInputCheck();
     }
 
     void MoveInputCheck()
     {
-        float x = Input.GetAxis("Horizontal"); // Gets the x input value 
-        float z = Input.GetAxis("Vertical"); // Gets the z input value 
+        float x = Input.GetAxis("Horizontal"); 
+        float z = Input.GetAxis("Vertical"); 
 
         Vector3 move = Vector3.zero;
 
         if (Input.GetKey(m_forward) || Input.GetKey(m_back) || Input.GetKey(m_left) || Input.GetKey(m_right))
         {
-            move = transform.right * x + transform.forward * z; // calculate the move vector (direction)          
+            move = transform.right * x + transform.forward * z;        
         }
 
-        MovePlayer(move); // Run the MovePlayer function with the vector3 value move
+        MovePlayer(move); 
     }
 
     void MovePlayer(Vector3 move)
     {
-        m_charControler.Move(move * m_finalSpeed * Time.deltaTime); // Moves the Gameobject using the Character Controller
+        m_charControler.Move(move * m_finalSpeed * Time.deltaTime); 
 
-        m_velocity.y += m_gravity * Time.deltaTime; // Gravity affects the jump velocity
-        m_charControler.Move(m_velocity * Time.deltaTime); //Actually move the player up
+        m_velocity.y += m_gravity * Time.deltaTime; 
+        m_charControler.Move(m_velocity * Time.deltaTime); 
     }
 }
 
