@@ -15,6 +15,8 @@ public class RangeManager : MonoBehaviour
 
     public GameObject Camera;
 
+    public GameObject LineLeader;
+
     public GameObject LineRender;
 
     public SwitchCamera SwitchCamera;
@@ -33,6 +35,11 @@ public class RangeManager : MonoBehaviour
         SelectedUnit = UnitSelect.SelectedUnit;
         UnitSelect = Camera.GetComponent<UnitSelect>();
         FPSMovement = Camera.GetComponent<FPSMovement>();
+
+        if(UnitSelect.SelectedUnit == null)
+        {
+            LineLeader.GetComponent<MouseFollow>().enabled = true;
+        }
 
         if (UnitSelect.SelectedUnit != null)
         {

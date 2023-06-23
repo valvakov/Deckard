@@ -348,6 +348,8 @@ MonoBehaviour:
   attacking: 0
   dice: {fileID: 0}
   attackSuccess: {fileID: 0}
+  SelectText: {fileID: 0}
+  SelectedText: {fileID: 0}
   attackButton: {fileID: 0}
 --- !u!1 &6424481412742725273
 GameObject:

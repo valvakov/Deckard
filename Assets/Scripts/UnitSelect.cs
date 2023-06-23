@@ -10,6 +10,7 @@ public class UnitSelect : MonoBehaviour
     public LayerMask g_friendlyLayer;
     public LayerMask g_enemyLayer;
     public RaycastHit g_hitObject;
+    public GameObject hitObject;
 
     public LineLeaderOff LeaderOffScript;
     public LinePoints LinePointScript;
@@ -20,14 +21,10 @@ public class UnitSelect : MonoBehaviour
     public GameObject TargetUnit;
 
     public UnitDetails UnitDetails;
-
-    public GameObject hitObject;
-
     public FPSMovement MovementScript;
 
     public LinePoints LinePoints;
 
-    public Text SelectedText;
     public Text AttackTutorial;
 
     void Start()

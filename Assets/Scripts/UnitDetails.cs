@@ -21,6 +21,7 @@ public class UnitDetails : MonoBehaviour
     private int diceRoll;
     public Text dice;
     public Text attackSuccess;
+    public Text SelectText;
 
     public Text SelectedText;
     //public GameObject Thisunit;
@@ -29,7 +30,8 @@ public class UnitDetails : MonoBehaviour
 
     void Start()
     {
-
+        encumbered = false;
+        fatigued = false;
     }
 
 

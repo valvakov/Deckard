@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnUnit : MonoBehaviour
 {
     public GameObject unitToSpawn;
+    public GameObject unitToSpawn2;
     public UnitSelect unitSelect;
     void Start()
     {
@@ -23,11 +24,22 @@ public class SpawnUnit : MonoBehaviour
         {
             Spawn();
         }
+
+        if (buttonClicked == 3)
+        {
+            Spawn2();
+        }
     }
 
     public void Spawn()
     {
-        Instantiate(unitToSpawn, new Vector3(-240f, 0.5f, -10f), Quaternion.identity);
         unitSelect.SelectedUnit = null;
+        Instantiate(unitToSpawn, new Vector3(-240f, 0.5f, -10f), Quaternion.identity);
+    }
+
+    public void Spawn2()
+    {
+        unitSelect.SelectedUnit = null;
+        Instantiate(unitToSpawn2, new Vector3(-240f, 0.5f, 9f), Quaternion.identity);
     }
 }
