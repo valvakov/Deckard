@@ -52,6 +52,10 @@ public class FPSMovement : MonoBehaviour
                 {
                     Encumberedtrue();
                 }
+                if (UnitDetails.encumbered == false)
+                {
+                    UnitDetails.mv = 8;
+                }
                 if (Input.GetMouseButtonDown(0))
                 {
                     RaycastHit hit;

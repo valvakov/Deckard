@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UnitSelect : MonoBehaviour
 {
     private Ray g_ray = new Ray();
-    public LayerMask g_layerToHit;
+    public LayerMask g_friendlyLayer;
     public LayerMask g_enemyLayer;
     public RaycastHit g_hitObject;
 
@@ -28,11 +28,12 @@ public class UnitSelect : MonoBehaviour
     public LinePoints LinePoints;
 
     public Text SelectedText;
+    public Text AttackTutorial;
 
     void Start()
     {
         MovementScript.attackButton.gameObject.SetActive(false);
-        if (SelectedUnit != null)
+        if (SelectedUnit != null) //used to avoid nullexception
         {
             UnitDetails.attacking = false;
             SelectedUnit.GetComponent<FPSMovement>().enabled = false;
@@ -44,13 +45,14 @@ public class UnitSelect : MonoBehaviour
         GameManager.GetComponent<LineLeaderOff>().enabled = false;
         SelectedUnit = null;
         TargetUnit = null;
+        AttackTutorial.enabled = false;
     }
 
 
     void Update()
     {
         g_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(g_ray, Mathf.Infinity, g_layerToHit))
+        if (Physics.Raycast(g_ray, Mathf.Infinity, g_friendlyLayer))
         {
             MouseClick();
         }
@@ -66,12 +68,12 @@ public class UnitSelect : MonoBehaviour
             AttackCheck();
         }
 
-        if (SelectedUnit != null)
+        if (SelectedUnit != null) //used to avoid nullexception
         {
             UnitDetails = SelectedUnit.GetComponent<UnitDetails>();
             if (UnitDetails.attacking == false)
             {
-                if (TargetUnit != null)
+                if (TargetUnit != null) //used to avoid nullexception
                 {
                     TargetUnit = null;
                 }
@@ -83,13 +85,13 @@ public class UnitSelect : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            check();
+            Check();
         }
     }
 
-    public void check()
+    public void Check()
     {
-        if (SelectedUnit == null)
+        if (SelectedUnit == null) //used to stop selecting another unit whilst one is already selected
         {
             Select();
         }
@@ -113,13 +115,14 @@ public class UnitSelect : MonoBehaviour
         GameManager.GetComponent<AttackingRange>().enabled = false;
         SelectedUnit.GetComponent<FPSMovement>().enabled = true;
         GameManager.GetComponent<LineLeaderOff>().enabled = true;
+        AttackTutorial.enabled = true;
     }
 
     public void AttackMode()
     {
 
         g_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(g_ray, Mathf.Infinity, g_layerToHit))
+        if (Physics.Raycast(g_ray, Mathf.Infinity, g_friendlyLayer))
         {
             AttackCheck();
         }
@@ -128,7 +131,7 @@ public class UnitSelect : MonoBehaviour
 
     public void AttackCheck()
     {
-        if (SelectedUnit != null)
+        if (SelectedUnit != null) //used to avoid nullexception
         {
             if (UnitDetails.attacking == true)
 

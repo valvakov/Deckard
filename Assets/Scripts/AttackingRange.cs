@@ -14,9 +14,11 @@ public class AttackingRange : MonoBehaviour
 
     public SwitchCamera CameraSelect;
 
-    public GameObject SelectedCamera;
+    public GameObject cameraInUse;
 
     public UnitSelect UnitSelectScript;
+
+    public RangeManager RangeManager;
 
     void Start()
     {
@@ -24,12 +26,14 @@ public class AttackingRange : MonoBehaviour
     }
     void Update()
     {
-        SelectedCamera = CameraSelect.SelectedCamera;
+        cameraInUse = RangeManager.Camera;
+        UnitSelectScript = cameraInUse.GetComponent<UnitSelect>();
+
         if (UnitSelectScript.SelectedUnit != null)
         {
-            UnitSelectScript = SelectedCamera.GetComponent<UnitSelect>();
-            UnitDetails = UnitSelectScript.SelectedUnit.GetComponent<UnitDetails>();
             player = UnitSelectScript.SelectedUnit.GetComponent<Transform>();
+            UnitSelectScript = cameraInUse.GetComponent<UnitSelect>();
+            UnitDetails = UnitSelectScript.SelectedUnit.GetComponent<UnitDetails>();
             movementScript = UnitSelectScript.SelectedUnit.GetComponent<FPSMovement>();
         }
 

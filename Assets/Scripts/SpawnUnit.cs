@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnUnit : MonoBehaviour
 {
     public GameObject unitToSpawn;
+    public UnitSelect unitSelect;
     void Start()
     {
         
@@ -27,5 +28,6 @@ public class SpawnUnit : MonoBehaviour
     public void Spawn()
     {
         Instantiate(unitToSpawn, new Vector3(-240f, 0.5f, -10f), Quaternion.identity);
+        unitSelect.SelectedUnit = null;
     }
 }
