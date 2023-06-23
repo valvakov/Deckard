@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnUnit : MonoBehaviour
@@ -7,6 +8,8 @@ public class SpawnUnit : MonoBehaviour
     public GameObject unitToSpawn;
     public GameObject unitToSpawn2;
     public UnitSelect unitSelect;
+
+    public ActionPoints ActionPoints;
     void Start()
     {
         
@@ -22,23 +25,31 @@ public class SpawnUnit : MonoBehaviour
     {
         if (buttonClicked == 2)
         {
-            Spawn();
+            if (ActionPoints.actionPoints >= 3)
+            {
+                Spawn();
+            }
         }
 
         if (buttonClicked == 3)
         {
-            Spawn2();
+            if (ActionPoints.actionPoints >= 3)
+            {
+                Spawn2();
+            }
         }
     }
 
     public void Spawn()
     {
+        ActionPoints.actionPoints -= 3;
         unitSelect.SelectedUnit = null;
         Instantiate(unitToSpawn, new Vector3(-240f, 0.5f, -10f), Quaternion.identity);
     }
 
     public void Spawn2()
     {
+        ActionPoints.actionPoints -= 3;
         unitSelect.SelectedUnit = null;
         Instantiate(unitToSpawn2, new Vector3(-240f, 0.5f, 9f), Quaternion.identity);
     }

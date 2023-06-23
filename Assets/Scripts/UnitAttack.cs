@@ -21,6 +21,7 @@ public class UnitAttack : MonoBehaviour
 
     public GameObject TargetUnit;
     public UnitDetails TargetUnitDetails;
+    public ActionPoints ActionPoints;
 
     void Start()
     {
@@ -60,27 +61,30 @@ public class UnitAttack : MonoBehaviour
 
     void Attack(Text attackSuccess)
     {
-        UnitSelect.SelectedUnit.GetComponent<UnitDetails>();
-        diceRoll = Random.Range(1, 7);
-        dice.text = diceRoll.ToString();
-        if (TargetUnit != null)
-        {
-            if (diceRoll > UnitDetails.hit)
+            UnitSelect.SelectedUnit.GetComponent<UnitDetails>();
+            diceRoll = Random.Range(1, 7);
+            dice.text = diceRoll.ToString();
+            if (TargetUnit != null)
             {
-                attackSuccess.text = "Attack hit";
-                TargetUnitDetails.hp -= 1;
-                UnitDetails.fatigued = true;
+                if (diceRoll > UnitDetails.hit)
+                {
+                    attackSuccess.text = "Attack hit";
+                    TargetUnitDetails.hp -= 1;
+                    UnitDetails.fatigued = true;
+                    ActionPoints.actionPoints -= 1;
+                }
+                if (diceRoll == UnitDetails.hit)
+                {
+                    attackSuccess.text = "Attack hit";
+                    TargetUnitDetails.hp -= 1;
+                    UnitDetails.fatigued = true;
+                    ActionPoints.actionPoints -= 1;
             }
-            if (diceRoll == UnitDetails.hit)
-            {
-                attackSuccess.text = "Attack hit";
-                TargetUnitDetails.hp -= 1;
-                UnitDetails.fatigued = true;
-            }
-            if (diceRoll < UnitDetails.hit)
-            {
-                attackSuccess.text = "Attack Miss";
-                UnitDetails.fatigued = true;
+                if (diceRoll < UnitDetails.hit)
+                {
+                    attackSuccess.text = "Attack Miss";
+                    UnitDetails.fatigued = true;
+                    ActionPoints.actionPoints -= 1;
             }
         }
     }

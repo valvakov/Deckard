@@ -10,6 +10,7 @@ public class ActionPoints : MonoBehaviour
     public FPSMovement MovementScript;
     public Text AP;
     public UnitSelect UnitSelect;
+    public SwitchCamera SwitchCamera;
 
     void Start()
     {
@@ -31,7 +32,7 @@ public class ActionPoints : MonoBehaviour
         AP.text = actionPoints.ToString();
         if (actionPoints == 0)
         {
-          UnitSelect.SelectedUnit.GetComponent<FPSMovement>().enabled = false;
+          UnitSelect.SelectedUnit.GetComponent<FPSMovement>().enabled = false; 
         }
     }
 }

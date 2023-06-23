@@ -18,6 +18,10 @@ public class LineLeaderOff : MonoBehaviour
 
     public SwitchCamera SwitchCamera;
 
+    public Ray g_ray = new Ray();
+    public LayerMask obstacleLayer;
+    public LayerMask playAreaLayer;
+
     void Start()
     {
         mouseScript.enabled = true;
@@ -42,6 +46,17 @@ public class LineLeaderOff : MonoBehaviour
             float dist = Vector3.Distance(mouseLeader.position, player.position);
             float minDist = UnitDetails.mv;
 
+            g_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(g_ray, Mathf.Infinity, obstacleLayer))
+            {
+                movementScript.enabled = false;
+                mouseScript.enabled = false;
+            }
+            if (Physics.Raycast(g_ray, Mathf.Infinity, playAreaLayer))
+            {
+                movementScript.enabled = true;
+                mouseScript.enabled = true;
+            }
             if (dist > minDist)
             {
                 movementScript.enabled = false;
