@@ -128,12 +128,15 @@ public class UnitSelect : MonoBehaviour
 
     public void AttackCheck()
     {
-        if (UnitDetails.attacking == true)
+        if (SelectedUnit != null)
+        {
+            if (UnitDetails.attacking == true)
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                AttackSuccess();
-            }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    AttackSuccess();
+                }
+        }
     }
 
     public void AttackSuccess()

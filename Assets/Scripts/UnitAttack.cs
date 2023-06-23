@@ -34,16 +34,22 @@ public class UnitAttack : MonoBehaviour
         {
             SelectionUnit = UnitSelect.SelectedUnit;
             UnitDetails = SelectionUnit.GetComponent<UnitDetails>();
-            TargetUnit = UnitSelect.TargetUnit;
-            TargetUnitDetails = TargetUnit.GetComponent<UnitDetails>();
+            if (UnitSelect.TargetUnit != null)
+            {
+                TargetUnit = UnitSelect.TargetUnit;
+                TargetUnitDetails = TargetUnit.GetComponent<UnitDetails>();
+            }
         }
     }
 
     public void ClickButton(int buttonClicked)
     {
-        if (buttonClicked == 1)
+        if (TargetUnit != null)
         {
-            AttackBegin();
+            if (buttonClicked == 1)
+            {
+                AttackBegin();
+            }
         }
     }
 
@@ -57,23 +63,25 @@ public class UnitAttack : MonoBehaviour
         UnitSelect.SelectedUnit.GetComponent<UnitDetails>();
         diceRoll = Random.Range(1, 7);
         dice.text = diceRoll.ToString();
-
-        if (diceRoll > UnitDetails.hit)
+        if (TargetUnit != null)
         {
-            attackSuccess.text = "Attack hit";
-            TargetUnitDetails.hp -=1;
-            UnitDetails.fatigued = true;
-        }
-        if (diceRoll == UnitDetails.hit)
-        {
-            attackSuccess.text = "Attack hit";
-            TargetUnitDetails.hp -=1;
-            UnitDetails.fatigued = true;
-        }
-        if (diceRoll < UnitDetails.hit)
-        {
-            attackSuccess.text = "Attack Miss";
-            UnitDetails.fatigued = true;
+            if (diceRoll > UnitDetails.hit)
+            {
+                attackSuccess.text = "Attack hit";
+                TargetUnitDetails.hp -= 1;
+                UnitDetails.fatigued = true;
+            }
+            if (diceRoll == UnitDetails.hit)
+            {
+                attackSuccess.text = "Attack hit";
+                TargetUnitDetails.hp -= 1;
+                UnitDetails.fatigued = true;
+            }
+            if (diceRoll < UnitDetails.hit)
+            {
+                attackSuccess.text = "Attack Miss";
+                UnitDetails.fatigued = true;
+            }
         }
     }
 }

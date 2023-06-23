@@ -6,7 +6,13 @@ public class SwitchCamera : MonoBehaviour
 {
     public GameObject Camera1;
     public GameObject Camera2;
+    public GameObject Camera1Move;
+    public GameObject Camera2Move;
     public GameObject SelectedCamera;
+
+    public ActionPoints ActionPoints;
+
+    public UnitSelect UnitSelect;
 
     void Start()
     {
@@ -16,18 +22,38 @@ public class SwitchCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("escape"))
+        ActionPoints = SelectedCamera.GetComponent<ActionPoints>();
+        UnitSelect = SelectedCamera.GetComponent<UnitSelect>();
+
+        if (Camera1.activeInHierarchy == false)
         {
-            Camera1.SetActive(false);
-            Camera2.SetActive(true);
             SelectedCamera = Camera2;
         }
 
-        if (Input.GetKeyDown("`"))
+        if (Camera2.activeInHierarchy == false)
+        {
+            SelectedCamera = Camera1;
+        }
+    }
+
+    public void CLickButton(int buttonClicked)
+    {
+        if (buttonClicked == 3)
+        {
+            Camera1.SetActive(false);
+            Camera2.SetActive(true);
+            Camera1Move.SetActive(false);
+            Camera2Move.SetActive(true);
+            UnitSelect.SelectedUnit = null;
+        }
+
+        if (buttonClicked == 4)
         {
             Camera1.SetActive(true);
             Camera2.SetActive(false);
-            SelectedCamera = Camera1;
+            Camera1Move.SetActive(true);
+            Camera2Move.SetActive(false);
+            UnitSelect.SelectedUnit = null;
         }
     }
 }

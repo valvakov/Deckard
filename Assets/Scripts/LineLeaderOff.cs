@@ -27,10 +27,12 @@ public class LineLeaderOff : MonoBehaviour
         SelectedCamera = SwitchCamera.SelectedCamera;
 
         UnitSelectScript = SelectedCamera.GetComponent<UnitSelect>();
-
-        UnitDetails = UnitSelectScript.SelectedUnit.GetComponent<UnitDetails>();
-        player = UnitSelectScript.SelectedUnit.GetComponent<Transform>();
-        movementScript = UnitSelectScript.SelectedUnit.GetComponent<FPSMovement>();
+        if (UnitSelectScript.SelectedUnit != null)
+        {
+            UnitDetails = UnitSelectScript.SelectedUnit.GetComponent<UnitDetails>();
+            player = UnitSelectScript.SelectedUnit.GetComponent<Transform>();
+            movementScript = UnitSelectScript.SelectedUnit.GetComponent<FPSMovement>();
+        }
 
         float dist = Vector3.Distance(mouseLeader.position, player.position);
         float minDist = UnitDetails.mv;

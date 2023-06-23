@@ -25,7 +25,7 @@ public class AttackingRange : MonoBehaviour
     void Update()
     {
         SelectedCamera = CameraSelect.SelectedCamera;
-        if (UnitSelectScript != null)
+        if (UnitSelectScript.SelectedUnit != null)
         {
             UnitSelectScript = SelectedCamera.GetComponent<UnitSelect>();
             UnitDetails = UnitSelectScript.SelectedUnit.GetComponent<UnitDetails>();
