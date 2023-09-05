@@ -10,6 +10,7 @@ public class SpawnUnit : MonoBehaviour
     public UnitSelect unitSelect;
 
     public ActionPoints ActionPoints;
+
     void Start()
     {
         
@@ -51,6 +52,7 @@ public class SpawnUnit : MonoBehaviour
     {
         ActionPoints.actionPoints -= 3;
         unitSelect.SelectedUnit = null;
+        unitToSpawn2.transform.Rotate(0f, 180f, 0f);
         Instantiate(unitToSpawn2, new Vector3(-240f, 0.5f, 9f), Quaternion.identity);
     }
 }
