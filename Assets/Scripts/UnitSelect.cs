@@ -23,6 +23,8 @@ public class UnitSelect : MonoBehaviour
     public UnitDetails UnitDetails;
     public FPSMovement MovementScript;
 
+    public UnitDetails TargetUnitDetails;
+
     public LinePoints LinePoints;
 
     public Text AttackTutorial;
@@ -43,7 +45,11 @@ public class UnitSelect : MonoBehaviour
             // in here!
         }
 
-
+        if (TargetUnit != null)
+        {
+            TargetUnitDetails.targeted = false;
+            TargetUnitDetails = null;
+        }
         LineRender.SetActive(false);
         GameManager.GetComponent<LineLeaderOff>().enabled = false;
         SelectedUnit = null;
@@ -75,6 +81,7 @@ public class UnitSelect : MonoBehaviour
         {
             UnitDetails = SelectedUnit.GetComponent<UnitDetails>();
             UnitDetails.selected = true;
+            AttackTutorial.enabled = true; 
             if (UnitDetails.attacking == false)
             {
                 if (TargetUnit != null) //used to avoid nullexception
@@ -88,6 +95,12 @@ public class UnitSelect : MonoBehaviour
         {
             DiceResult.gameObject.SetActive(false);
             AttackResult.gameObject.SetActive(false);
+        }
+
+        if (TargetUnit != null)
+        {
+            TargetUnitDetails = TargetUnit.GetComponent<UnitDetails>();
+            TargetUnitDetails.targeted = true;
         }
     }
 

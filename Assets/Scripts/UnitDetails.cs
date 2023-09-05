@@ -17,6 +17,7 @@ public class UnitDetails : MonoBehaviour
     public bool encumbered;
     public bool fatigued;
     public bool attacking;
+    public bool targeted;
 
     private int diceRoll;
     public Text dice;

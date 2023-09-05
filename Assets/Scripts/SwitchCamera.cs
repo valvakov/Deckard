@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SwitchCamera : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class SwitchCamera : MonoBehaviour
     public List<GameObject> Player2;
 
     public GameObject LineRender;
+
+    public Text SelectTutorial1;
+    public Text SelectTutorial2;
 
     void Start()
     {
@@ -71,6 +75,17 @@ public class SwitchCamera : MonoBehaviour
                 Unit2.GetComponent<UnitDetails>().selected = false;
             }
         }
+        if(UnitSelect.TargetUnit == null)
+        {
+            foreach (GameObject Unit1 in Player1)
+            {
+                Unit1.GetComponent<UnitDetails>().targeted = false;
+            }
+            foreach (GameObject Unit2 in Player2)
+            {
+                Unit2.GetComponent<UnitDetails>().targeted = false;
+            }
+        }
     }
 
     public void CLickButton(int buttonClicked)
@@ -82,6 +97,7 @@ public class SwitchCamera : MonoBehaviour
             {
                 Unit1.GetComponent<UnitDetails>().encumbered = false;
                 Unit1.GetComponent<UnitDetails>().fatigued = false;
+                Unit1.GetComponent<UnitDetails>().selected = false;
             }
             RangeManager.AttackTutorialCam1.SetActive(false);
             Camera1.SetActive(false);
@@ -91,6 +107,7 @@ public class SwitchCamera : MonoBehaviour
             UnitSelect.SelectedUnit = null;
             ActionPoints.actionPoints = 6;
             LineRender.gameObject.SetActive(false);
+            SelectTutorial1.text = "";
         }
 
         if (buttonClicked == 4)
@@ -100,6 +117,7 @@ public class SwitchCamera : MonoBehaviour
             {
                 Unit2.GetComponent<UnitDetails>().encumbered = false;
                 Unit2.GetComponent<UnitDetails>().fatigued = false;
+                Unit2.GetComponent<UnitDetails>().selected = false;
             }
             RangeManager.AttackTutorialCam2.SetActive(false);
             Camera1.SetActive(true);
@@ -109,6 +127,7 @@ public class SwitchCamera : MonoBehaviour
             UnitSelect.SelectedUnit = null;
             ActionPoints.actionPoints = 6;
             LineRender.gameObject.SetActive(false);
+            SelectTutorial2.text = "";
         }
     }
 }

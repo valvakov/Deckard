@@ -62,6 +62,8 @@ public class RangeManager : MonoBehaviour
 
                 if (UnitSelect.SelectedUnit != null)
                 {
+                    AttackTutorialCam1.gameObject.SetActive(true);
+                    AttackTutorialCam2.gameObject.SetActive(true);
                     if (Input.GetKeyDown("space"))
                     {
                         UnitDetails.attacking = true;
@@ -80,8 +82,6 @@ public class RangeManager : MonoBehaviour
                 DiceResult1.gameObject.SetActive(true);
                 AttackResult2.gameObject.SetActive(true);
                 DiceResult2.gameObject.SetActive(true);
-                AttackTutorialCam1.gameObject.SetActive(true);
-                AttackTutorialCam2.gameObject.SetActive(true);
             }
 
             if (UnitDetails.attacking == false)
@@ -90,9 +90,6 @@ public class RangeManager : MonoBehaviour
                 DiceResult1.text = "";
                 AttackResult2.text = "";
                 DiceResult2.text = "";
-                FPSMovement.attackButton.gameObject.SetActive(false);
-                AttackTutorialCam1.gameObject.SetActive(false);
-                AttackTutorialCam2.gameObject.SetActive(false);
             }
 
         }
