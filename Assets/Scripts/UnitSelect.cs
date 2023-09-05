@@ -27,6 +27,9 @@ public class UnitSelect : MonoBehaviour
 
     public Text AttackTutorial;
 
+    public GameObject DiceResult;
+    public GameObject AttackResult;
+
     void Start()
     {
         MovementScript.attackButton.gameObject.SetActive(false);
@@ -75,6 +78,12 @@ public class UnitSelect : MonoBehaviour
                     TargetUnit = null;
                 }
             }
+        }
+
+        if (SelectedUnit == null)
+        {
+            DiceResult.gameObject.SetActive(false);
+            AttackResult.gameObject.SetActive(false);
         }
     }
 

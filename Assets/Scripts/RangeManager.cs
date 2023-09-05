@@ -23,6 +23,13 @@ public class RangeManager : MonoBehaviour
 
     public GameObject SelectedUnit;
 
+    public GameObject AttackResult;
+
+    public GameObject DiceResult;
+
+    public GameObject AttackTutorialCam1;
+    public GameObject AttackTutorialCam2;
+
     void Start()
     {
         
@@ -36,7 +43,7 @@ public class RangeManager : MonoBehaviour
         UnitSelect = Camera.GetComponent<UnitSelect>();
         FPSMovement = Camera.GetComponent<FPSMovement>();
 
-        if(UnitSelect.SelectedUnit == null)
+        if (UnitSelect.SelectedUnit == null)
         {
             LineLeader.GetComponent<MouseFollow>().enabled = true;
         }
@@ -46,6 +53,7 @@ public class RangeManager : MonoBehaviour
             SelectedUnit.GetComponent<UnitDetails>();
 
             UnitDetails = UnitSelect.SelectedUnit.GetComponent<UnitDetails>();
+
             if (UnitDetails.fatigued == false)
             {
 
@@ -62,15 +70,22 @@ public class RangeManager : MonoBehaviour
                 }
             }
 
-
             if (UnitDetails.attacking == true)
             {
                 FPSMovement.attackButton.gameObject.SetActive(true);
+                AttackResult.gameObject.SetActive(true);
+                DiceResult.gameObject.SetActive(true);
+                AttackTutorialCam1.gameObject.SetActive(true);
+                AttackTutorialCam2.gameObject.SetActive(true);
             }
 
             if (UnitDetails.attacking == false)
             {
                 FPSMovement.attackButton.gameObject.SetActive(false);
+                AttackResult.gameObject.SetActive(false);
+                DiceResult.gameObject.SetActive(false);
+                AttackTutorialCam1.gameObject.SetActive(false);
+                AttackTutorialCam2.gameObject.SetActive(false);
             }
 
         }

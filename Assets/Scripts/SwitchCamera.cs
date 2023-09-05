@@ -10,6 +10,8 @@ public class SwitchCamera : MonoBehaviour
     public GameObject Camera2Move;
     public GameObject SelectedCamera;
 
+    public RangeManager RangeManager;
+
     public ActionPoints ActionPoints;
 
     public UnitSelect UnitSelect;
@@ -21,6 +23,8 @@ public class SwitchCamera : MonoBehaviour
     public List<GameObject> Player1; 
 
     public List<GameObject> Player2;
+
+    public GameObject LineRender;
 
     void Start()
     {
@@ -67,12 +71,14 @@ public class SwitchCamera : MonoBehaviour
                 Unit1.GetComponent<UnitDetails>().encumbered = false;
                 Unit1.GetComponent<UnitDetails>().fatigued = false;
             }
+            RangeManager.AttackTutorialCam1.SetActive(false);
             Camera1.SetActive(false);
             Camera2.SetActive(true);
             Camera1Move.SetActive(false);
             Camera2Move.SetActive(true);
             UnitSelect.SelectedUnit = null;
             ActionPoints.actionPoints = 6;
+            LineRender.gameObject.SetActive(false);
         }
 
         if (buttonClicked == 4)
@@ -83,12 +89,14 @@ public class SwitchCamera : MonoBehaviour
                 Unit2.GetComponent<UnitDetails>().encumbered = false;
                 Unit2.GetComponent<UnitDetails>().fatigued = false;
             }
+            RangeManager.AttackTutorialCam2.SetActive(false);
             Camera1.SetActive(true);
             Camera2.SetActive(false);
             Camera1Move.SetActive(true);
             Camera2Move.SetActive(false);
             UnitSelect.SelectedUnit = null;
             ActionPoints.actionPoints = 6;
+            LineRender.gameObject.SetActive(false);
         }
     }
 }
