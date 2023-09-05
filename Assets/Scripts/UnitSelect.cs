@@ -27,6 +27,8 @@ public class UnitSelect : MonoBehaviour
 
     public Text AttackTutorial;
 
+    public Text SelectedText;
+
     public GameObject DiceResult;
     public GameObject AttackResult;
 
@@ -37,6 +39,7 @@ public class UnitSelect : MonoBehaviour
         {
             UnitDetails.attacking = false;
             SelectedUnit.GetComponent<FPSMovement>().enabled = false;
+            UnitDetails.selected = true;
             // in here!
         }
 
@@ -71,6 +74,7 @@ public class UnitSelect : MonoBehaviour
         if (SelectedUnit != null) //used to avoid nullexception
         {
             UnitDetails = SelectedUnit.GetComponent<UnitDetails>();
+            UnitDetails.selected = true;
             if (UnitDetails.attacking == false)
             {
                 if (TargetUnit != null) //used to avoid nullexception

@@ -59,6 +59,18 @@ public class SwitchCamera : MonoBehaviour
             SelectedCamera.GetComponent<UnitAttack>().enabled = true;
             UnitAttack.attackButton.enabled = true;
         }
+
+        if(UnitSelect.SelectedUnit == null)
+        {
+            foreach (GameObject Unit1 in Player1)
+            {
+                Unit1.GetComponent<UnitDetails>().selected = false;
+            }
+            foreach (GameObject Unit2 in Player2)
+            {
+                Unit2.GetComponent<UnitDetails>().selected = false;
+            }
+        }
     }
 
     public void CLickButton(int buttonClicked)

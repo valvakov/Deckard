@@ -47,10 +47,14 @@ public class UnitAttack : MonoBehaviour
     {
         if (TargetUnit != null)
         {
-            if (buttonClicked == 1)
+            if (UnitDetails.fatigued == false)
             {
-                AttackBegin();
+                if (buttonClicked == 1)
+                {
+                    AttackBegin();
+                }
             }
+
         }
     }
 

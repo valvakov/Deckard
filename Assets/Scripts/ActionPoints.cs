@@ -32,7 +32,10 @@ public class ActionPoints : MonoBehaviour
         AP.text = actionPoints.ToString();
         if (actionPoints == 0)
         {
-          UnitSelect.SelectedUnit.GetComponent<FPSMovement>().enabled = false; 
+            if (UnitSelect.SelectedUnit != null)
+            {
+                UnitSelect.SelectedUnit.GetComponent<FPSMovement>().enabled = false;
+            }
         }
     }
 }
