@@ -10,6 +10,7 @@ public class EnableSelectedText : MonoBehaviour
     public GameObject TargetedText;
     public GameObject FatiguedText;
     public GameObject EncumberedText;
+    public GameObject SelectionRing;
     public UnitDetails UnitDetails;
 
     void Start()
@@ -23,6 +24,10 @@ public class EnableSelectedText : MonoBehaviour
         if (UnitDetails.selected == true)
         {
             SelectedText.SetActive(true);
+        }
+        if (UnitDetails.selected == true)
+        {
+            SelectionRing.SetActive(true);
         }
         if (UnitDetails.attacking == true)
         {
@@ -44,6 +49,10 @@ public class EnableSelectedText : MonoBehaviour
         if (UnitDetails.selected == false)
         {
             SelectedText.SetActive(false);
+        }
+        if (UnitDetails.selected == false)
+        {
+            SelectionRing.SetActive(false);
         }
         if (UnitDetails.attacking == false)
         {

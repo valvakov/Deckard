@@ -62,6 +62,8 @@ public class FPSMovement : MonoBehaviour
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //Click to move
                     ActionPointScript.actionPoints -= 1; //Deducts AP after moving
                     UnitDetails.encumbered = true;
+                    
+
 
                     if (Physics.Raycast(ray, out hit))
                     {
