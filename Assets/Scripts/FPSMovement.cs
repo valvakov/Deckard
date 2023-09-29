@@ -27,6 +27,8 @@ public class FPSMovement : MonoBehaviour
 
     public Button attackButton;
 
+    public Animation SelectedUnit;
+
     void Start()
     {
         newPosition = transform.position;

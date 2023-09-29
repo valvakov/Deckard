@@ -12,6 +12,7 @@ public class EnableSelectedText : MonoBehaviour
     public GameObject EncumberedText;
     public GameObject SelectionRing;
     public UnitDetails UnitDetails;
+    public GameObject TargetedRing;
 
     void Start()
     {
@@ -21,6 +22,10 @@ public class EnableSelectedText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(UnitDetails.targeted == true)
+        {
+            TargetedRing.SetActive(true);
+        }
         if (UnitDetails.selected == true)
         {
             SelectedText.SetActive(true);
@@ -69,6 +74,10 @@ public class EnableSelectedText : MonoBehaviour
         if (UnitDetails.targeted == false)
         {
             TargetedText.SetActive(false);
+        }
+        if (UnitDetails.targeted == false)
+        {
+            TargetedRing.SetActive(false);
         }
     }
 }
